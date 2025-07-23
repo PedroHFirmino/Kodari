@@ -8,54 +8,34 @@ const Footer = () => {
 
 
 return(
-<footer style={styles.footer}>   
-    <nav>
-        <div style={styles.footerContainer} className="footer-responsive">
-            <ul style={styles.leftFooter}>
-                <Link to='/'>
-                    <img src={logo} style={styles.logo} />
-                </Link>
-                <li>
-                    
-                </li>
-            </ul>
-            <div style={styles.rightFooter} className="footer-right-responsive">
-            <ul style={styles.column}>
-                <li style={styles.title}>Kodari</li>
-                <li>
-                    <Link
-                        to='/'
-                        className="text-neutral-500 hover:text-neutral-50 transition duration-300"
-                        style={styles.link}>Sobre</Link></li>
-                <li>
-                    <Link
-                        to='/'
-                        className="text-neutral-500 hover:text-neutral-50 transition duration-300"
-                        style={styles.link}>Termos</Link></li>
-                        
-            </ul>
+<footer style={styles.footer}>
+  <nav>
+    <div style={styles.footerContainer} className="footer-responsive">
+      <div style={styles.logoContainer}>
+        <Link to='/'>
+          <img src={logo} alt="Logo" style={styles.logo} />
+        </Link>
+      </div>
 
-            <ul style={styles.column}>
-                <li style={styles.title}>Planos</li>
-                <li>
-                    <Link
-                        to='/'
-                        className="text-neutral-500 hover:text-neutral-50 transition duration-300"
-                        style={styles.link}>Preços</Link></li>
-            </ul>
+      <div style={styles.rightFooter} className="footer-right-responsive">
+        <ul style={styles.column}>
+          <li style={styles.title}>Kodari</li>
+          <li><Link to='/' style={styles.link} className="text-white hover:text-neutral-500 transition duration-300">Sobre</Link></li>
+          <li><Link to='/' style={styles.link} className="text-white hover:text-neutral-500 transition duration-300">Termos</Link></li>
+        </ul>
 
-            <ul style={styles.column}>
-                <li style={styles.title}>Notícias</li>
-                <li>
-                    <Link
-                        to='/'
-                        className="text-neutral-500 hover:text-neutral-50 transition duration-300"
-                        style={styles.link}>Blog</Link></li>
-            </ul>
-            </div>
-        </div>
-    </nav>
-    
+        <ul style={styles.column}>
+          <li style={styles.title}>Planos</li>
+          <li><Link to='/' style={styles.link} className="text-white hover:text-neutral-500 transition duration-300">Preços</Link></li>
+        </ul>
+
+        <ul style={styles.column}>
+          <li style={styles.title}>Notícias</li>
+          <li><Link to='/' style={styles.link} className="text-white hover:text-neutral-500 transition duration-300">Blog</Link></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 </footer>
 )};
 export default Footer;
@@ -78,7 +58,7 @@ const styles = {
         letterSpacing: 2,
         marginBottom: 12,
         width: '100%',
-        textAlign: 'center'
+        textAlign: 'center',
         
     },
     

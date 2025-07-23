@@ -16,72 +16,81 @@ const Header = () =>{
     }
 
     return(
-
-<header style={styles.header}>
+<>
+  {isMenuOpen && (
+    <div style={styles.overlay} onClick={closeMenu}></div>
+  )}
+  <header style={styles.header}>
     <nav style={styles.navbar}> 
-        <div 
-        style={styles.menuContainer}
-        className={`header-menu-container${isMenuOpen ? ' open' : ''}`}>
-            <ul style={styles.leftMenu}>
+      <div style={styles.menuContainer} className="header-menu-container">
+        {/*leftMenu */}
+        <div className="header-left-group" style={{display: 'flex', alignItems: 'center', gap: 24}}>
+          <div style={styles.logoHamburgerContainer}>
             <Link to='/'>
-                    <img src={logo} style={styles.logo}></img>
-                </Link>
-                <button
-                    className="hamburger"
-                    style={styles.hamburger}
-                    onClick={toggleMenu}
-                    >
-                    <span style={styles.hamburgerBar}></span>
-                    <span style={styles.hamburgerBar}></span>
-                    <span style={styles.hamburgerBar}></span>
-                </button>
-                <li style={styles.li}>
-                    <Link 
-                    to='/' 
-                    onClick={closeMenu} 
-                    style={styles.link}
-                    className="text-white hover:text-neutral-500 transition duration-300">
-                    Sobre</Link></li>
-
-                <li style={styles.li}>
-                    <Link 
-                    to ='/' 
-                    onClick={toggleMenu} 
-                    style={styles.link}
-                    className="text-white hover:text-neutral-500 transition duration-300">
-                    Preços</Link></li>
-
-                    
-                <li style={styles.li}>
-                    <Link 
-                    to ='/' 
-                    onClick={toggleMenu} 
-                    style={styles.link}
-                    className="text-white hover:text-neutral-500 transition duration-300">
-                    Blog</Link></li>
-            </ul>
-
-            {/* Sign in */}
-            <ul style={styles.rightMenu}>
-                <li style={styles.sign}>
-                    <Link 
-                        to='/' 
-                        onClick={closeMenu} 
-                        style={styles.link} 
-                        className="text-white hover:text-neutral-500 transition duration-300"> Entrar</Link></li>
-            {/* Sign up */}
-                <li style={styles.signup}>
-                    <Link 
-                        to='/' 
-                        onClick={closeMenu}
-                        className="text-white hover:text-neutral-500 transition duration-300"
-                        style={styles.link} 
-                        > Criar uma conta</Link></li>
-            </ul> 
-        </div>     
+              <img src={logo} style={styles.logo}></img>
+            </Link>
+            <button
+              className="hamburger"
+              style={styles.hamburger}
+              onClick={toggleMenu}
+              aria-label="Abrir menu"
+            >
+              <span style={styles.hamburgerBar}></span>
+              <span style={styles.hamburgerBar}></span>
+              <span style={styles.hamburgerBar}></span>
+            </button>
+          </div>
+          <ul style={styles.leftMenu} className="left-menu-desktop">
+            <li style={styles.li}>
+              <Link to='/' style={styles.link} className="text-white hover:text-neutral-500 transition duration-300">Sobre</Link>
+            </li>
+            <li style={styles.li}>
+              <Link to='/' style={styles.link} className="text-white hover:text-neutral-500 transition duration-300">Preços</Link>
+            </li>
+            <li style={styles.li}>
+              <Link to='/' style={styles.link} className="text-white hover:text-neutral-500 transition duration-300">Blog</Link>
+            </li>
+          </ul>
+        </div>
+        {/*rightMenu */}
+        <div className="header-right-group" style={{display: 'flex', alignItems: 'center', gap: 16}}>
+          <ul style={styles.rightMenu} className="right-menu-desktop">
+            <li style={styles.sign}>
+              <Link to='/' style={styles.link} className="text-white hover:text-neutral-500 transition duration-300">Entrar</Link>
+            </li>
+            <li style={styles.signup}>
+              <Link to='/' className="text-white hover:text-neutral-500 transition duration-300" style={styles.link}>Criar uma conta</Link>
+            </li>
+          </ul>
+        </div>
+      </div>
+      {/* Menu mobile lateral */}
+      <div className={`mobile-drawer${isMenuOpen ? ' open' : ''}`} style={styles.mobileDrawer}>
+        <div style={styles.drawerHeader}>
+          <Link to='/' onClick={closeMenu}>
+            <img src={logo} style={styles.logo} className="hover:scale-110"></img>
+          </Link>
+          <button style={styles.closeButton} onClick={closeMenu} aria-label="Fechar menu">×</button>
+        </div>
+        <ul style={styles.drawerMenu}>
+          <li style={styles.drawerLi}>
+            <Link to='/' onClick={closeMenu} style={styles.drawerLink} className="text-white hover:text-neutral-500 transition duration-300">Sobre</Link>
+          </li>
+          <li style={styles.drawerLi}>
+            <Link to='/' onClick={closeMenu} style={styles.drawerLink} className="text-white hover:text-neutral-500 transition duration-300">Preços</Link>
+          </li>
+          <li style={styles.drawerLi}>
+            <Link to='/' onClick={closeMenu} style={styles.drawerLink} className="text-white hover:text-neutral-500 transition duration-300">Blog</Link>
+          </li>
+        </ul>
+        <div style={styles.drawerActions}>
+          <Link to='/' onClick={closeMenu} style={styles.drawerLoginBtn} className="text-white hover:text-neutral-500 transition duration-300">Entrar</Link>
+          <Link to='/' onClick={closeMenu} style={styles.drawerSignupBtn}className="text-green-300 hover:text-neutral-500 transition duration-300">Criar uma conta</Link>
+        </div>
+      </div>
     </nav>
-</header>
-
+  </header>
+</>
 )};
 export default Header;
 
@@ -121,10 +130,12 @@ navbar: {
 },
 
 menuContainer: {
-    display:'flex',
-    justifyContent: 'space-between',
-    width: '100%',
-    maxWidth: 1200,
+  display:'flex',
+  alignItems: 'center', 
+  justifyContent: 'space-between', // divide as três áreas: esquerda - centro - direita
+  width: '100%',
+  maxWidth: 1200,
+  position: 'relative',
 },
 
 rightMenu: {
@@ -178,19 +189,110 @@ link: {
 },
 
 hamburger: {
-    display: 'none', // será sobrescrito pelo CSS em mobile
+    display: 'none', 
     background: 'none',
     border: 'none',
     cursor: 'pointer',
     padding: 0,
-    marginRight: '16px'
+    marginRight: '16px',
   },
   hamburgerBar: {
-    width: '28px',
-    height: '4px',
+    width: '26px',
+    height: '2px',
     background: '#fff',
     margin: '3px 0',
     borderRadius: '2px',
-    transition: '0.3s'
-  }
+    transition: '0.3s',
+    
+  },
+  overlay: {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    width: '100vw',
+    height: '100vh',
+    background: 'rgba(0,0,0,0.5)',
+    zIndex: 1000,
+  },
+  logoHamburgerContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    gap: 16,
+    flexDirection: 'column',
+    alignItems: 'center'
+  },
+  mobileDrawer: {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    height: '100vh',
+    width: '85vw',
+    maxWidth: 340,
+    background: '#16181d',
+    zIndex: 1100,
+    transform: 'translateX(-100%)',
+    transition: 'transform 0.3s cubic-bezier(.4,0,.2,1)',
+    display: 'flex',
+    flexDirection: 'column',
+    padding: '24px 16px 0 16px',
+  },
+  drawerHeader: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 32,
+  },
+  closeButton: {
+    background: 'none',
+    border: 'none',
+    color: '#fff',
+    fontSize: 36,
+    cursor: 'pointer',
+    lineHeight: 1,
+  },
+  drawerMenu: {
+    listStyle: 'none',
+    padding: 0,
+    margin: 0,
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 20,
+  },
+  drawerLi: {
+    margin: 0,
+  },
+  drawerLink: {
+    fontSize: 16,
+    textDecoration: 'none',
+    padding: '2px 0',
+    display: 'block',
+  },
+  drawerActions: {
+    marginTop: 32,
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 16,
+  },
+  drawerLoginBtn: {
+    background: 'none',
+    border: '1px solid #fff',
+    fontSize: 18,
+    padding: '10px 0',
+    borderRadius: 4,
+    textAlign: 'center',
+    textDecoration: 'none',
+    fontWeight: 500,
+    transition: 'background 0.2s',
+  },
+  drawerSignupBtn: {
+    background: 'none',
+    border: '1px solid #ffff',
+    fontSize: 18,
+    padding: '10px 0',
+    borderRadius: 4,
+    textAlign: 'center',
+    textDecoration: 'none',
+    fontWeight: 500,
+    transition: 'background 0.2s',
+  },
 }
