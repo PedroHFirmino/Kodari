@@ -101,7 +101,8 @@ const styles = {
 header: {
     backgroundColor: '#0d1117',
     display: 'flex',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    borderBottom: '1px solid #ff6b35'
     
 
 },
@@ -132,7 +133,7 @@ navbar: {
 menuContainer: {
   display:'flex',
   alignItems: 'center', 
-  justifyContent: 'space-between', // divide as três áreas: esquerda - centro - direita
+  justifyContent: 'space-between', 
   width: '100%',
   maxWidth: 1200,
   position: 'relative',
