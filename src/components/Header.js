@@ -45,7 +45,10 @@ const Header = () =>{
               <Link to='/' style={styles.link} className="text-white hover:text-neutral-500 transition duration-300">Sobre</Link>
             </li>
             <li style={styles.li}>
-              <Link to='/' style={styles.link} className="text-white hover:text-neutral-500 transition duration-300">Preços</Link>
+              <Link to='/' style={styles.link} className="text-white hover:text-neutral-500 transition duration-300">Planos</Link>
+            </li>
+            <li style={styles.li}>
+              <Link to='/' style={styles.link} className="text-white hover:text-neutral-500 transition duration-300">Para Empresas</Link>
             </li>
             <li style={styles.li}>
               <Link to='/' style={styles.link} className="text-white hover:text-neutral-500 transition duration-300">Blog</Link>

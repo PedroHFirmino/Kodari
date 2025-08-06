@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Draggable } from "gsap/Draggable";
+import imagetest from '../assets/imagetest.png';
+import imagetest2 from '../assets/imagetest2.png';
 
 gsap.registerPlugin(ScrollTrigger, Draggable);
 
@@ -155,7 +157,9 @@ const Home = () => {
     }, []);
 
     return (
-        <div ref={bannerRef} style={styles.container}>
+        <>
+        <div style={styles.pageWrapper}> 
+        <section ref={bannerRef} style={styles.bannerSection}>
             {/* Floating icons*/}
             <div ref={iconsRef} className="floating-icons-container" style={styles.floatingIcons}>
                 <div style={styles.icon}>JS</div>
@@ -175,6 +179,7 @@ const Home = () => {
             </div>
 
             {/* Main content */}
+
             <div style={styles.contentContainer}>
                 <h1 ref={titleRef} style={styles.title}>
                     <span style={styles.titleHighlight}>Melhore suas habilidades</span><br />
@@ -187,20 +192,102 @@ const Home = () => {
                     Comece agora!
                 </Link>
             </div>
-
-            {/* Background gradient */}
-            <div style={styles.gradientOverlay}></div>
-        </div>
-    );
+        </section>
+            {/* Content */}
+        <section style={styles.contentSection}>
+            <div style={styles.cardContainer}>
+                <h2 style={styles.titleMainContent}>Aprimore sua técnica</h2>
+                <div style={styles.sideByside}>
+                    <div style={styles.textColumn}>
+                        <p style={styles.description}>
+                            Aqui você encontrará uma variedade de desafios reais de empresas no mercado de trabalho, permitindo que você pratique, se prepare e melhore suas habilidades de programação.
+                        </p>               
+                        <Link to="/register" style={styles.button}>Criar Conta</Link>
+                    </div>
+                <div style={styles.imageColumn}>
+                <img src={imagetest} alt="Imagem de exemplo" style={styles.image1} />
+                </div>
+                </div>
+            </div>
+        </section>
+        <section style={styles.contentCardsSection}>
+            <div style={styles.leftCardContainer}>
+                <h2 style={styles.titleMainContent}>Receba Feedbacks</h2>
+                        <p style={styles.description}>Resolva os desafios, faça upload do seu repositório e receba avaliações do que foi desenvolvido.</p>         
+                    <div style={styles.imageContainer}>
+                        <img src={imagetest2} alt="Imagem de exemplo2" style={styles.image2}></img>
+                    </div>
+            </div>
+            <div style={styles.leftCardContainer}>
+                <h2 style={styles.titleMainContent}>teste</h2>
+                        <p style={styles.description}>Resolva os desafios, faça upload do seu repositório e receba avaliações do que foi desenvolvido.</p>         
+                    <div style={styles.imageContainer}>
+                        <img src={imagetest2} alt="Imagem de exemplo2" style={styles.image2}></img>
+                    </div>
+            </div>
+        </section>
+        <section style={styles.contentSection}>
+            <div style={styles.cardContainer}>
+                <div style={styles.topicsContainer}>
+                    <div style={styles.topicItem}>
+                        <h2 style={styles.topicsMainContent}>Feedbacks</h2>
+                        <p style={styles.topics}>Receba feedbacks do seu código.</p>
+                    </div>
+                    <div style={styles.topicItem}>
+                        <h2 style={styles.topicsMainContent}>Desafio</h2>
+                        <p style={styles.topics}>Um desafio novo toda semana.</p>
+                    </div>
+                   <div style={styles.topicItem}>
+                        <h2 style={styles.topicsMainContent}>Comunidade</h2>
+                        <p style={styles.topics}>Crie uma comunidade e compartilhe ideias.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    </>
+);
+    
 }
+
+
 
 export default Home;
 /** @type {{ [key: string]: React.CSSProperties }} */
 const styles = {
+        pageWrapper: {
+        width: '100%',
+        backgroundColor: '#0d1117', 
+        backgroundImage: `
+            radial-gradient(circle at 50% 30%, rgba(255, 107, 53, 0.15) 0%, transparent 40%),
+            linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px)
+        `,
+        // backgroundSize: '100% 100%, 40px 40px, 40px 40px', 
+        // color: '#ffffff',
+    },
+        bannerSection: {
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        position: 'relative',
+        overflow: 'hidden',
+        padding: '20px'
+    },
+
+    contentSection: {
+
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '20px'
+    },
     container: {
         position: 'relative',
         minHeight: '100vh',
-        background: 'linear-gradient(135deg, #0d1117 0%, #161b22 50%, #21262d 100%)',
+        background: '#0d1117',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -262,13 +349,21 @@ const styles = {
         backgroundClip: 'text'
     },
 
+    // Main content
+       titleMainContent: {
+        fontSize: '35px',
+        marginBottom: '24px',
+        lineHeight: '1.2',
+        color: '#ffffff'
+    },
+
     description: {
         fontSize: 'clamp(1.1rem, 2vw, 1.3rem)',
         color: 'rgba(255, 255, 255, 0.8)',
         marginBottom: '40px',
         lineHeight: '1.6',
         maxWidth: '600px',
-        margin: '0 auto 40px auto'
+      
     },
 
     button: {
@@ -283,7 +378,6 @@ const styles = {
         transition: 'all 0.3s ease',
         boxShadow: '0 8px 32px rgba(255, 107, 53, 0.3)',
         border: 'none',
-        cursor: 'pointer'
     },
 
     gradientOverlay: {
@@ -295,5 +389,116 @@ const styles = {
         background: 'radial-gradient(circle at 50% 50%, rgba(255, 107, 53, 0.1) 0%, transparent 70%)',
         pointerEvents: 'none',
         zIndex: 1
-    }
+    },
+
+    // Card container
+    cardContainer: {
+            textAlign: 'left',
+            background: 'linear-gradient(135deg, rgba(255, 107, 53, 0.5), rgba(247, 147, 30, 0.5))',
+            padding: '80px',
+            borderRadius: '15px',
+            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+            width: '100%',
+            maxWidth: '1300px',
+    },
+
+    contentCardsSection:{
+
+        display: 'flex',
+        alignItems: 'center',
+        gap: '40px',
+        justifyContent: 'center',
+        padding: '20px'
+
+    },
+
+    leftCardContainer: {
+            textAlign: 'left',
+            background: 'rgba(67, 67, 67, 0.3)',
+            padding: '80px',
+            borderRadius: '15px',
+            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+            width: '100%',
+            maxWidth: '625px',
+            
+    },
+    rightCardContainer: {
+            textAlign: 'left',
+            background: 'rgba(67, 67, 67, 0.3)',
+            padding: '80px',
+            borderRadius: '15px',
+            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+            width: '100%',
+            maxWidth: '625px',
+    },
+    sideByside:{
+        display: 'flex',
+        alignItems: 'center', 
+        gap: '40px',
+    },
+
+    imageColumn: {
+    flex: 1, 
+    display: 'flex',
+    justifyContent: 'center', 
+    
+    alignItems: 'center',
+
+    },
+    textColumn:{
+        flex: 1,
+    },
+    lefTextColumn:{
+        flex: 1,
+    },
+    imageContainer:{
+        display: 'flex',
+        justifyContent:'flex-start',
+        width: '100%',
+    },
+
+    image1:{
+        height: 'auto', 
+        borderRadius: '10px', 
+        marginBottom: '20px',
+        width: '50%',
+        maxWidth: '300px',
+    },
+
+    topicsContainer:{
+        display: 'flex',
+        justifyContent:'space-around',
+        alignItems: 'center',
+        width: '100%',
+        padding: '20px 0',
+
+    },
+
+    topicItem: {
+        textAlign: 'center',
+    },
+
+    topics: {
+        fontSize: '16px',
+        color: 'rgba(255, 255, 255)',
+        marginTop: '10px',
+    },
+
+    topicsMainContent: {
+        fontSize: '35px',
+        marginBottom: '24px',
+        lineHeight: '1.2',
+        color: '#ffffff',
+    },
+
+    image2:{
+        height: 'auto', 
+        borderRadius: '10px', 
+        marginBottom: '20px',
+        width: '100%',
+        maxWidth: '300px',
+    },
+
+
+
 };

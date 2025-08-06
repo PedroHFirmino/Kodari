@@ -28,6 +28,11 @@ return(
           <li style={styles.title}>Planos</li>
           <li><Link to='/' style={styles.link} className="text-white hover:text-neutral-500 transition duration-300">Preços</Link></li>
         </ul>
+        
+        <ul style={styles.column}>
+          <li style={styles.title}>Para Empresas</li>
+          <li><Link to='/' style={styles.link} className="text-white hover:text-neutral-500 transition duration-300">Preços</Link></li>
+        </ul>
 
         <ul style={styles.column}>
           <li style={styles.title}>Notícias</li>
@@ -47,7 +52,8 @@ const styles = {
         backgroundColor: '#0d1117',
         display: 'flex',
         justifyContent: 'center',
-        padding: '40px 0'
+        padding: '40px 0',
+        borderTop: '1px solid #ff6b35'
         
     
     },
