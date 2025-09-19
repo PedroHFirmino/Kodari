@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Link} from 'react-router-dom';
 import logo from '../assets/logo (1).png';
-import './css/media.css'
+import '../media.css'
 
 
 const Header = () =>{
@@ -23,48 +23,50 @@ const Header = () =>{
   <header style={styles.header}>
     <nav style={styles.navbar}> 
       <div style={styles.menuContainer} className="header-menu-container">
-        {/*leftMenu */}
-        <div className="header-left-group" style={{display: 'flex', alignItems: 'center', gap: 24}}>
-          <div style={styles.logoHamburgerContainer}>
-            <Link to='/'>
-              <img src={logo} style={styles.logo}></img>
-            </Link>
-            <button
-              className="hamburger"
-              style={styles.hamburger}
-              onClick={toggleMenu}
-              aria-label="Abrir menu"
-            >
-              <span style={styles.hamburgerBar}></span>
-              <span style={styles.hamburgerBar}></span>
-              <span style={styles.hamburgerBar}></span>
-            </button>
-          </div>
-          <ul style={styles.leftMenu} className="left-menu-desktop">
-            <li style={styles.li}>
-              <Link to='/' style={styles.link} className="text-white hover:text-neutral-500 transition duration-300">Sobre</Link>
-            </li>
-            <li style={styles.li}>
-              <Link to='/' style={styles.link} className="text-white hover:text-neutral-500 transition duration-300">Planos</Link>
-            </li>
-            <li style={styles.li}>
-              <Link to='/' style={styles.link} className="text-white hover:text-neutral-500 transition duration-300">Para Empresas</Link>
-            </li>
-            <li style={styles.li}>
-              <Link to='/' style={styles.link} className="text-white hover:text-neutral-500 transition duration-300">Blog</Link>
-            </li>
-          </ul>
+        {/* Logo centralizado */}
+        <div style={styles.logoContainer}>
+          <Link to='/'>
+            <img src={logo} style={styles.logo} alt="Kodari"></img>
+          </Link>
         </div>
-        {/*rightMenu */}
-        <div className="header-right-group" style={{display: 'flex', alignItems: 'center', gap: 16}}>
-          <ul style={styles.rightMenu} className="right-menu-desktop">
-            <li style={styles.sign}>
-              <Link to='/' style={styles.link} className="text-white hover:text-neutral-500 transition duration-300">Entrar</Link>
-            </li>
-            <li style={styles.signup}>
-              <Link to='/' className="text-white hover:text-neutral-500 transition duration-300" style={styles.link}>Criar uma conta</Link>
-            </li>
-          </ul>
+        
+        {/* Menu principal */}
+        <ul style={styles.mainMenu} className="main-menu-desktop">
+          <li style={styles.menuItem}>
+            <Link to='/hrm' style={styles.link}>Kodari HRM</Link>
+          </li>
+          <li style={styles.menuItem}>
+            <Link to='/enterprise' style={styles.link}>Kodari Enterprise</Link>
+          </li>
+          <li style={styles.menuItem}>
+            <Link to='/solutions' style={styles.link}>Soluções</Link>
+          </li>
+          <li style={styles.menuItem}>
+            <Link to='/experiences' style={styles.link}>Experiências</Link>
+          </li>
+          <li style={styles.menuItem}>
+            <Link to='/about' style={styles.link}>Sobre Nós</Link>
+          </li>
+        </ul>
+
+        {/* Menu direito */}
+        <div style={styles.rightMenuContainer}>
+          <button style={styles.searchButton} aria-label="Buscar">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.35-4.35"></path>
+            </svg>
+          </button>
+          <button
+            className="hamburger"
+            style={styles.hamburger}
+            onClick={toggleMenu}
+            aria-label="Abrir menu"
+          >
+            <span style={styles.hamburgerBar}></span>
+            <span style={styles.hamburgerBar}></span>
+            <span style={styles.hamburgerBar}></span>
+          </button>
         </div>
       </div>
       {/* Menu mobile lateral */}
@@ -77,19 +79,21 @@ const Header = () =>{
         </div>
         <ul style={styles.drawerMenu}>
           <li style={styles.drawerLi}>
-            <Link to='/' onClick={closeMenu} style={styles.drawerLink} className="text-white hover:text-neutral-500 transition duration-300">Sobre</Link>
+            <Link to='/hrm' onClick={closeMenu} style={styles.drawerLink}>Kodari HRM</Link>
           </li>
           <li style={styles.drawerLi}>
-            <Link to='/' onClick={closeMenu} style={styles.drawerLink} className="text-white hover:text-neutral-500 transition duration-300">Preços</Link>
+            <Link to='/enterprise' onClick={closeMenu} style={styles.drawerLink}>Kodari Enterprise</Link>
           </li>
           <li style={styles.drawerLi}>
-            <Link to='/' onClick={closeMenu} style={styles.drawerLink} className="text-white hover:text-neutral-500 transition duration-300">Blog</Link>
+            <Link to='/solutions' onClick={closeMenu} style={styles.drawerLink}>Soluções</Link>
+          </li>
+          <li style={styles.drawerLi}>
+            <Link to='/experiences' onClick={closeMenu} style={styles.drawerLink}>Experiências</Link>
+          </li>
+          <li style={styles.drawerLi}>
+            <Link to='/about' onClick={closeMenu} style={styles.drawerLink}>Sobre Nós</Link>
           </li>
         </ul>
-        <div style={styles.drawerActions}>
-          <Link to='/' onClick={closeMenu} style={styles.drawerLoginBtn} className="text-white hover:text-neutral-500 transition duration-300">Entrar</Link>
-          <Link to='/' onClick={closeMenu} style={styles.drawerSignupBtn}className="text-green-300 hover:text-neutral-500 transition duration-300">Criar uma conta</Link>
-        </div>
       </div>
     </nav>
   </header>
@@ -102,94 +106,84 @@ export default Header;
 const styles = {
 
 header: {
-    backgroundColor: '#0d1117',
-    display: 'flex',
-    justifyContent: 'center',
-    borderBottom: '1px solid #ff6b35'
-    
-
-},
-
-title: {
-    color: 'white',
-    fontSize: 33,
-    width: '100%',
-    textAlign: 'center'
-    
-},
-
-logo:{
-    width: '60px',
-    height: 'auto',
+    backgroundColor: '#ffffff',
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    right: 0,
+    zIndex: 1000,
+    borderBottom: '1px solid rgba(0, 0, 0, 0.1)',
+    backdropFilter: 'blur(10px)',
 },
 
 navbar: {
-    width:'100%',
-    maxWidth: 1200,
-    flexDirection: 'column',
+    width: '100%',
+    maxWidth: '1400px',
+    margin: '0 auto',
+    padding: '0 20px',
     display: 'flex',
     alignItems: 'center',
-    padding: '20px'
-
+    justifyContent: 'space-between',
+    height: '80px',
 },
 
-menuContainer: {
-  display:'flex',
-  alignItems: 'center', 
-  justifyContent: 'space-between', 
-  width: '100%',
-  maxWidth: 1200,
-  position: 'relative',
+logoContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: '0 0 auto',
 },
 
-rightMenu: {
+logo: {
+    width: '120px',
+    height: 'auto',
+    transition: 'transform 0.3s ease',
+},
+
+mainMenu: {
     listStyle: 'none',
     display: 'flex',
-    gap: 20,
+    gap: '40px',
     padding: 0,
     margin: 0,
-    fontSize: '16px',
-    alignItems: 'center'
-
-
+    alignItems: 'center',
+    flex: '1',
+    justifyContent: 'center',
 },
 
-leftMenu: {
-    listStyle: 'none',
-    display: 'flex',
-    gap: 20,
-    padding: 0,
-    margin: 0,
-    fontSize: '16px',
-    alignItems: 'center'
-
+menuItem: {
+    position: 'relative',
 },
-
-
-sign: {
-     display:'flex',
-     gap:5,
-
-},
-
-signup: {
-    display:'flex',
-    gap:5,
-    padding: '5px 10px',
-    borderRadius: '5px',
-    borderColor: 'white',
-    borderWidth: '1px',
-    borderStyle: 'solid',
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: '16px',
-    textDecoration: 'none',
-
-},
-
 
 link: {
-    textDecoration: "none",
+    textDecoration: 'none',
+    color: '#333333',
+    fontSize: '16px',
+    fontWeight: '500',
+    letterSpacing: '0.5px',
+    transition: 'color 0.3s ease',
+    position: 'relative',
+    padding: '10px 0',
+},
+
+rightMenuContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '20px',
+    flex: '0 0 auto',
+},
+
+searchButton: {
+    background: 'none',
+    border: 'none',
+    cursor: 'pointer',
+    padding: '8px',
+    borderRadius: '50%',
+    transition: 'background-color 0.3s ease',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: '#333333',
 },
 
 hamburger: {
@@ -231,28 +225,35 @@ hamburger: {
     left: 0,
     height: '100vh',
     width: '85vw',
-    maxWidth: 340,
-    background: '#16181d',
+    maxWidth: 400,
+    background: '#ffffff',
     zIndex: 1100,
     transform: 'translateX(-100%)',
     transition: 'transform 0.3s cubic-bezier(.4,0,.2,1)',
     display: 'flex',
     flexDirection: 'column',
-    padding: '24px 16px 0 16px',
+    padding: '40px 30px 0 30px',
+    borderRight: '1px solid rgba(0, 0, 0, 0.1)',
+    boxShadow: '0 0 50px rgba(0, 0, 0, 0.1)',
   },
   drawerHeader: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginBottom: 32,
+    marginBottom: 40,
+    paddingBottom: 20,
+    borderBottom: '1px solid rgba(0, 0, 0, 0.1)',
   },
   closeButton: {
     background: 'none',
     border: 'none',
-    color: '#fff',
-    fontSize: 36,
+    color: '#333333',
+    fontSize: 32,
     cursor: 'pointer',
     lineHeight: 1,
+    padding: '8px',
+    borderRadius: '50%',
+    transition: 'background-color 0.3s ease',
   },
   drawerMenu: {
     listStyle: 'none',
@@ -260,43 +261,20 @@ hamburger: {
     margin: 0,
     display: 'flex',
     flexDirection: 'column',
-    gap: 20,
+    gap: 8,
   },
   drawerLi: {
     margin: 0,
   },
   drawerLink: {
-    fontSize: 16,
+    fontSize: 18,
     textDecoration: 'none',
-    padding: '2px 0',
+    color: '#333333',
+    padding: '16px 0',
     display: 'block',
-  },
-  drawerActions: {
-    marginTop: 32,
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 16,
-  },
-  drawerLoginBtn: {
-    background: 'none',
-    border: '1px solid #fff',
-    fontSize: 18,
-    padding: '10px 0',
-    borderRadius: 4,
-    textAlign: 'center',
-    textDecoration: 'none',
-    fontWeight: 500,
-    transition: 'background 0.2s',
-  },
-  drawerSignupBtn: {
-    background: 'none',
-    border: '1px solid #ffff',
-    fontSize: 18,
-    padding: '10px 0',
-    borderRadius: 4,
-    textAlign: 'center',
-    textDecoration: 'none',
-    fontWeight: 500,
-    transition: 'background 0.2s',
+    fontWeight: '500',
+    letterSpacing: '0.5px',
+    borderBottom: '1px solid rgba(0, 0, 0, 0.05)',
+    transition: 'color 0.3s ease',
   },
 }

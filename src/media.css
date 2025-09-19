@@ -131,3 +131,31 @@
   }
 }
 
+/* Feature Section Responsive Styles */
+@media (max-width: 768px) {
+  .feature-section .feature-child {
+    flex: 1 1 100% !important;
+    max-width: 100% !important;
+  }
+  
+  .feature-section .feature-layout {
+    flex-direction: column !important;
+    gap: 40px !important;
+    text-align: center !important;
+  }
+  
+  .feature-section .image-container {
+    order: -1 !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .feature-section {
+    padding: 40px 15px !important;
+  }
+  
+  .feature-section .feature-layout {
+    gap: 30px !important;
+  }
+}
+
